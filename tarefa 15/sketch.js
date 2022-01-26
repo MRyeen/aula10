@@ -1,7 +1,9 @@
 
-var gameState;
-var play;
-var end; 
+
+var PLAY=1;
+var END=0; 
+var gameState=PLAY;
+
 
 
 var bow , arrow,  background, redB, pinkB, greenB ,blueB ,arrowGroup;
@@ -53,9 +55,8 @@ function draw() {
   
  
 
-  //Adicione a condição para gameState = PLAY
-  gameState=play; 
-  if (gameState==play){
+   
+  if (gameState==PLAY){
   // solo em movimento
   scene.velocityX = -3
 
@@ -90,7 +91,7 @@ function draw() {
   } 
   
   if (score===50){
-    gameState=end;
+    gameState=END;
 
 
   }
@@ -105,29 +106,35 @@ function draw() {
 
  
  
- //Adicione o código para destruir o arco
- //defina a velocidade do fundo como 0
  
-
-
-
-
  
+  if (gameState===END){
+    //defina a velocidade do fundo como 0
+      scene.velocityX=0; 
+
+     
+    //Adicione o código para destruir o arco
+    bow.destroy()
+  }
+
+
+
+
  
   
+  
   drawSprites();
+
+  text("Pontuação: "+ score, 200,200); 
+  
 }
 //Adicione a condição de texto para exibir a pontuação.
 
 //prof não consegui fazer a pontuação aparecer ela fica de baixo da imagem de fundo|_b-('- ' )
 
-text("Pontuação: "+ score, 200,200);  
 
-if (gameState===end){
-  scene.velocityX=0; 
 
-  bow.lifetime=1;
-}      
+      
 
 
 function redBalloon() {
